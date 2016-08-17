@@ -14,12 +14,12 @@ class Person(models.Model):
 class Story(models.Model):
     first_word=models.CharField(max_length=500, default='')
     create_user=models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='stories_created')
-    words=models.ManyToManyField('Word',related_name='story')
     def __str__(self):
         return self.first_word
 
 class Word(models.Model):
     text=models.CharField(max_length=50, default='')
+    story=models.ForeignKey('Story',related_name='words')
     user=models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='stories_participated')
     def __str__(self):
         return self.text
