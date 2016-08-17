@@ -21,3 +21,15 @@ urlpatterns = [
     url(r'^account/', include('account.urls')),
     url(r'^', include('main.urls')),
 ]
+
+
+# 配置media路径（仅debug使用，deploy的时候使用nginx处理请求）
+# 获取图片的url样例：http://www.hsyksx.com/media/good_pictures/图片名称.jpg
+from django.conf import settings
+if settings.DEBUG:
+    # urlpatterns += [
+    #         url(r"^media/(?P<path>.*)$", include("django.views.static.serve"), {"document_root": settings.MEDIA_ROOT,}),
+    # ]
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
