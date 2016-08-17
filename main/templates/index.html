@@ -17,8 +17,16 @@
     <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    {% load static %}
+    <link href="{% static 'main/style.css' %}" rel="stylesheet" />
+
 </head>
 <body>
-123
+{% include 'partials/header.html' %}
+
+<div id="container">
+
+</div>
+
 </body>
 </html>
