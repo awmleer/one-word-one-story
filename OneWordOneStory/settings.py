@@ -123,7 +123,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT='/var/www/story/static'
 if DEBUG:
-    STATIC_ROOT=os.path.join(BASE_DIR,'static')
+    STATIC_ROOT=os.path.join(BASE_DIR,'Static')
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static/'),
     )
@@ -131,5 +131,5 @@ if DEBUG:
 
 MEDIA_ROOT='/var/www/story/media'
 if DEBUG:
-    MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+    MEDIA_ROOT=os.path.join(BASE_DIR,'Media')
 MEDIA_URL = '/media/'
