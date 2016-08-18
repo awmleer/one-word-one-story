@@ -54,4 +54,7 @@ def story_add(request):
 @require_http_methods(["GET"])
 def story_detail(request,story_id):
     context = user_identify(request)
+    story=Story.objects.get(id=story_id)
+    context['story']=story
+    # context['words']=Story.objects.get(id=story_id).words.all()
     return render(request,'story_detail.html',context)

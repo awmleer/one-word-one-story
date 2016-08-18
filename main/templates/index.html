@@ -19,32 +19,12 @@
                 <div class="avatar" style="background: url('{{ story.create_user.person.avatar.url }}') no-repeat center center;background-size: cover;"></div>
                 <div class="content">
                     <span style="display: block;">{{ story.create_user.person.name }}&nbsp;<span class="label label-default">{{ story.words.count }} 回复</span></span>
-                    <a href="{% url 'main:story_detail' story_id=story.id %}" class="first-word"><b>{{ story.first_word }}</b></a>
+                    <a href="{% url 'main:story_detail' story_id=story.id %}"><b>{{ story.first_word }}</b></a>
                 </div>
             </div>
         {% endfor %}
     </div>
 </div>
-<style>
-    .story{
-        background-color: #EFE1C4;border-top: 1px solid #927057;padding-top: 8px;padding-bottom: 8px;
-    }
-    .story .avatar{
-        width: 72px;height: 72px;vertical-align: middle;display: inline-block;
-    }
-    .story .content{
-        display: inline-block;width: calc(100% - 80px);width:-moz-calc(100% - 80px);width:-webkit-calc(100% - 80px);vertical-align: middle;padding-left: 3px;
-    }
-    .story .content a{
-        color: #927057;
-    }
-    .story .content a:hover{
-        color: #927057;
-    }
-    .story .content b{
-        display: block;text-overflow: ellipsis;width: 80%;overflow: hidden;white-space: nowrap;margin-top: 8px;font-size: 14px;
-    }
-</style>
 
 {% include 'footer.html' %}
 </body>

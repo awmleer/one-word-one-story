@@ -6,14 +6,28 @@
 {% include 'partials/header.html' %}
 <div class="container">
     <div class="row">
-        <div class="col-xs-6">
-            <a class="button button-rounded button-block"><i class="fa fa-search"></i> 搜索</a>
-        </div>
-        <div class="col-xs-6">
-            <a {% if not has_logged_in %}onclick="alert('请先登录才能创建故事')"{% endif %} href="{% url 'main:story_add' %}" class="button button-rounded button-block button-brown"><i class="fa fa-plus"></i> 创建</a>
+        <div class="col-xs-12">
+            <div class="avatar" style="background: url('{{ story.create_user.person.avatar.url }}') no-repeat center center;background-size: cover;width: 100px;height: 100px;display: inline-block;vertical-align: top"></div>
+            <div style="display: inline-block;width: calc(100% - 120px);width:-moz-calc(100% - 120px);width:-webkit-calc(100% - 120px);padding-left: 3px;vertical-align: top;padding-top: 6px">
+                <span style="display: block;font-size: 18px">{{ story.create_user.person.name }}</span>
+                <b style="font-size: 18px">{{ story.first_word }}</b>
+            </div>
         </div>
     </div>
     <div class="row" style="margin-top: 20px;border-bottom: 1px solid #927057;">
+        {% for word in story.words.all %}
+            <div class="col-xs-12 word">
+                <div class="avatar" style="background: url('{{ word.user.person.avatar.url }}') no-repeat center center;background-size: cover;"></div>
+                <div class="content">
+                    <span style="">{{ word.user.person.name }}</span>
+                    <b>{{ word.text }}</b>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-xs-12 story" style="height: 80px;padding-top: 30px;text-align: center">
+                <span>还没有人回复呢</span>
+            </div>
+        {% endfor %}
     </div>
 </div>
 
