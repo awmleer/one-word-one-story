@@ -12,11 +12,11 @@
         <form id="form_login">
             <div class="input_form" style="width: 90%;">
                 <span><i class="fa fa-user"></i></span>
-                <input id="username" type="text" placeholder="用户名">
+                <input name="username" type="text" placeholder="用户名">
             </div>
             <div class="input_form" style="width: 90%;margin: 18px 0">
                 <span><i class="fa fa-lock"></i></span>
-                <input id="password" type="password" placeholder="密码">
+                <input name="password" type="password" placeholder="密码">
             </div>
         </form>
         <button onclick="login()" class="button button-3d button-rounded button-brown" style="width: 90%;">登录</button>
@@ -31,8 +31,12 @@
 <script>
     function login() {
         $("#username").val();
-        $.post("/accounts/login/", $("#testform").serialize(),function (data) {
-            alert(data);
+        $.post("/accounts/login/", $("#form_login").serialize(),function (data) {
+            if (data == 'success') {
+                location.href='/index';
+            }else {
+                alert(data);
+            }
         });
     }
 </script>
