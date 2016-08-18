@@ -82,3 +82,10 @@ def me_participated(request):
     context = user_identify(request)
     context['words']=request.user.words.order_by('-publish_time')[:30]
     return render(request, 'me_participated.html', context)
+
+
+@login_required
+@require_http_methods(["GET"])
+def me_setting(request):
+    context = user_identify(request)
+    return render(request, 'me_setting.html', context)

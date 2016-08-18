@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% include 'head.html' %}
+<link rel="stylesheet" href="{% static 'css/tabs.css' %}">
+<body>
+{% include 'partials/header.html' %}
+
+<div class="container">
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-xs-12">
+            <div class="avatar" style="background: url('{{ user.person.avatar.url }}') no-repeat center center;background-size: cover;width: 100px;height: 100px;display: inline-block;vertical-align: top"></div>
+            <div style="display: inline-block;width: calc(100% - 120px);width:-moz-calc(100% - 120px);width:-webkit-calc(100% - 120px);padding-left: 3px;vertical-align: top;padding-top: 6px">
+                <b style="display: block;font-size: 18px;">{{ user.person.name }}&nbsp;&nbsp;<a href="#" class="button button-large button-plain button-borderless"><i class="fa fa-pencil-square-o"></i></a></b>
+                <span style="font-size: 18px;margin-top: 10px;display: block;">{{ user.person.introduction }}</span>
+            </div>
+        </div>
+        <div class="col-xs-12" style="margin-top: 15px">
+            <a href="#" class="button button-brown button-block button-rounded" style="margin-bottom: 10px">修改密码</a>
+            <a href="#" class="button button-block button-rounded">关于</a>
+        </div>
+    </div>
+</div>
+<div class="tabs tabs-style-topline">
+    <nav>
+        <ul>
+            <li><a href="{% url 'main:me_created' %}" class="icon fa fa-paper-plane"><span>我开启的</span></a></li>
+            <li><a href="{% url 'main:me_participated' %}" class="icon fa fa-reply-all"><span>我参与的</span></a></li>
+            <li class="tab-current"><a href="{% url 'main:me_setting' %}" class="icon fa fa-user"><span>个人设置</span></a></li>
+        </ul>
+    </nav>
+</div>
+
+</body>
+</html>
