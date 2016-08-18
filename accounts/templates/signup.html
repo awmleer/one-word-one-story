@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% include 'head.html' %}
+<style>
+    .main:before{
+        top:-4%;
+    }
+</style>
+<body style="background:#927057;">
+<div class="figure">
+    <img src="{% static 'images/logo.svg' %}" style="background-color: #ffffff"/>
+    <div class="main" style="box-sizing: content-box;">
+        <div class="head">
+            <h1>一人一句话 · 注册</h1>
+        </div>
+        <form id="form_signup">
+            <div class="input_form" style="width: 90%;">
+                <span style="position: absolute;top: 8px;left: -20px;font-size: 24px">*</span>
+                <span><i class="fa fa-user"></i></span>
+                <input name="username" type="text" placeholder="用户名" required>
+            </div>
+            <div class="input_form" style="width: 90%;margin: 18px 0 0">
+                <span style="position: absolute;top: 8px;left: -20px;font-size: 24px">*</span>
+                <span><i class="fa fa-heart"></i></span>
+                <input name="name" type="text" placeholder="昵称" required>
+            </div>
+            <div class="input_form" style="width: 90%;margin: 18px 0 0">
+                <span><i class="fa fa-envelope"></i></span>
+                <input name="email" type="text" placeholder="邮箱">
+            </div>
+            <div class="input_form" style="width: 90%;margin: 18px 0 0">
+                <span><i class="fa fa-commenting"></i></span>
+                <input name="introduction" type="text" placeholder="一句话个人介绍（20字以内）" maxlength="20">
+            </div>
+            <div class="input_form" style="width: 90%;margin: 18px 0 0">
+                <span style="position: absolute;top: 8px;left: -20px;font-size: 24px">*</span>
+                <span><i class="fa fa-lock"></i></span>
+                <input id="password" name="password" type="password" placeholder="密码" required>
+            </div>
+            <div class="input_form" style="width: 90%;margin: 18px 0">
+                <span style="position: absolute;top: 8px;left: -20px;font-size: 24px">*</span>
+                <span><i class="fa fa-lock"></i></span>
+                <input id="password_again" type="password" placeholder="再次输入密码" required>
+            </div>
+            <p style="text-align: left;font-size: 12px;padding-left: 5%">标有*的是必填项</p>
+            <button type="submit" class="button button-3d button-rounded button-brown" style="width: 90%;">立即注册</button>
+        </form>
+        <br>
+        <div style="width: 90%;display: inline-block;margin-top: 18px">
+            <a href="{% url 'accounts:login' %}" style="float: right;">已有账号？点我登录</a>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</div>
+
+<script>
+    function signup() {
+        $("#username").val();
+        $.post("/accounts/signup/", $("#form_signup").serialize(),function (data) {
+            if (data == 'success') {
+                location.href='/index';
+            }else {
+                alert(data);
+            }
+        });
+    }
+</script>
+</body>
+</html>

@@ -22,7 +22,7 @@
         <button onclick="login()" class="button button-3d button-rounded button-brown" style="width: 90%;">登录</button>
         <br>
         <div style="width: 90%;display: inline-block;margin-top: 18px">
-            <a href="#" style="float: right;">没有账号？点我注册</a>
+            <a href="{% url 'accounts:signup' %}" style="float: right;">没有账号？点我注册</a>
         </div>
     </div>
     {% include 'footer.html' %}
