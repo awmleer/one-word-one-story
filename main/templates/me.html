@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-{#{% load static %}#}
+{% load static %}
 {% include 'head.html' %}
+<link rel="stylesheet" href="{% static 'css/tabs.css' %}">
 <body>
 {% include 'partials/header.html' %}
 
@@ -15,25 +16,16 @@
         </div>
     </div>
 </div>
-<script>
-    function publish() {
-        var first_word=$("#first_word").val();
-        if (first_word == '') {
-            alert("请输入内容才能开启故事");return;
-        }
-        $.post('/story/add/',{
-            first_word:first_word
-        },function (data) {
-            if (data.status == 'success') {
-                alert("开启成功，分享给好友吧");
-                location.href='/story/'+data.story_id;
-            }else {
-                alert("开启失败");
-            }
-        });
-    }
-</script>
+<div class="tabs tabs-style-topline">
+    <nav>
+        <ul>
+            <li class="tab-current"><a href="#" class="icon fa fa-paper-plane"><span>我开启的</span></a></li>
+            <li><a href="#" class="icon fa fa-reply-all"><span>我参与的</span></a></li>
+            <li><a href="#" class="icon fa fa-user"><span>个人设置</span></a></li>
+        </ul>
+    </nav>
+</div>
 
-{% include 'footer.html' %}
+{#todo 底部tab#}
 </body>
 </html>

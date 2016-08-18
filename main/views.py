@@ -16,13 +16,10 @@ from django.shortcuts import redirect
 logger = logging.getLogger('django')
 
 def user_identify(request):
-    context={}
-    if isinstance(request.user,AnonymousUser):
-        context['has_logged_in']=False
-    else:
-        context['has_logged_in']=True
-        context['user']={'name':request.user.person.name}
-    return context
+    return {
+        'has_logged_in': not isinstance(request.user,AnonymousUser),
+        'user':request.user
+    }
 
 
 
@@ -73,9 +70,6 @@ def story_reply(request,story_id):
 
 @login_required
 @require_http_methods(["GET"])
-def me(request,story_id):
+def me(request):
     context = user_identify(request)
-    story=Story.objects.get(id=story_id)
-    context['story']=story
-    context['words']=story.words.order_by('publish_time')
-    return render(request,'story_detail.html',context)
+    return render(request,'me.html',context)
