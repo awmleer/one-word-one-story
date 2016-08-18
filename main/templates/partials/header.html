@@ -1,4 +1,8 @@
 <div id="header" style="position: fixed;height: 48px;width: 100%;background:#927057;color: #fff;box-shadow: 0 5px 3px #888888;">
-    <a class="button button-plain button-border button-rounded" style="float: right;margin-top: 5px;padding: 0 12px;">登录</a>
+    {% if has_logged_in %}
+        <a href="{% url 'accounts:login' %}" class="button button-plain button-border button-rounded button-small" style="float: right;margin-top: 9px;margin-right:5px;padding: 0 12px;">{{ user.name }}</a>
+    {% else %}
+        <a href="{% url 'accounts:login' %}" class="button button-plain button-border button-rounded button-small" style="float: right;margin-top: 9px;margin-right:5px;padding: 0 12px;">登录</a>
+    {% endif %}
     <p style="font-size: 28px;margin: 5px 15px">一人一句话</p>
 </div>
