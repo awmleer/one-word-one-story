@@ -40,26 +40,35 @@
         <div class="col-xs-12 word">
             <textarea id="word" style="background: #fff5e1;margin-top: 10px;height: 6em;" placeholder="一句话接下去…（请不要超过200字）" maxlength="200"></textarea>
             <button onclick="publish()" class="button button-rounded button-3d button-brown button-block" style="margin-top: 15px;margin-bottom: 15px">发表</button>
+            {% if not has_logged_in %}<p style="width:100%;text-align: center">请先登录再进行回复</p>{% endif %}
         </div>
     </div>
 </div>
 <script>
-    function publish () {
-        var word=$("#word").val();
-        if (word == '') {
-            alert("内容不能是空的啊");return;
-        }
-        $.post('reply/',{
-            word:word
-        },function (data) {
-            if (data == 'success') {
-                alert("回复成功");
-                location.reload();
-            }else {
-                alert("回复失败");
+    {% if has_logged_in %}
+        function publish () {
+            var word=$("#word").val();
+            if (word == '') {
+                alert("内容不能是空的啊");return;
             }
-        });
-    }
+            $.post('reply/',{
+                word:word
+            },function (data) {
+                if (data == 'success') {
+                    alert("回复成功");
+                    location.reload();
+                }else {
+                    alert("回复失败");
+                }
+            });
+        }
+    {% else %}
+        function publish () {
+            alert("请先登录再进行回复");
+            location.href='/accounts/login';
+        }
+    {% endif %}
+
 </script>
 
 

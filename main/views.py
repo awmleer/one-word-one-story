@@ -60,6 +60,7 @@ def story_detail(request,story_id):
     return render(request,'story_detail.html',context)
 
 
+@login_required
 @require_http_methods(["POST"])
 def story_reply(request,story_id):
     if request.POST['word']:
@@ -68,3 +69,13 @@ def story_reply(request,story_id):
     else:
         res=HttpResponse('fail', content_type="text/plain")
     return res
+
+
+@login_required
+@require_http_methods(["GET"])
+def me(request,story_id):
+    context = user_identify(request)
+    story=Story.objects.get(id=story_id)
+    context['story']=story
+    context['words']=story.words.order_by('publish_time')
+    return render(request,'story_detail.html',context)
