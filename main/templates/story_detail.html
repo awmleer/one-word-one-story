@@ -14,6 +14,14 @@
             </div>
         </div>
     </div>
+    <div class="row" style="margin-top: 15px">
+        <div class="col-xs-6">
+            <a href="/index" class="button button-rounded button-block">回到首页</a>
+        </div>
+        <div class="col-xs-6">
+            <a href="#word" class="button button-brown button-rounded button-block">回复故事</a>
+        </div>
+    </div>
     <div class="row" style="margin-top: 20px;border-bottom: 1px solid #927057;">
         {% for word in words.all %}
             <div class="col-xs-12 word">
@@ -29,8 +37,31 @@
                 <span>还没有人回复呢</span>
             </div>
         {% endfor %}
+        <div class="col-xs-12 word">
+            <textarea id="word" style="background: #fff5e1;margin-top: 10px;height: 6em;" placeholder="一句话接下去…（请不要超过200字）" maxlength="200"></textarea>
+            <button onclick="publish()" class="button button-rounded button-3d button-brown button-block" style="margin-top: 15px;margin-bottom: 15px">发表</button>
+        </div>
     </div>
 </div>
+<script>
+    function publish () {
+        var word=$("#word").val();
+        if (word == '') {
+            alert("内容不能是空的啊");return;
+        }
+        $.post('reply/',{
+            word:word
+        },function (data) {
+            if (data == 'success') {
+                alert("回复成功");
+                location.reload();
+            }else {
+                alert("回复失败");
+            }
+        });
+    }
+</script>
+
 
 {% include 'footer.html' %}
 </body>

@@ -58,3 +58,13 @@ def story_detail(request,story_id):
     context['story']=story
     context['words']=story.words.order_by('publish_time')
     return render(request,'story_detail.html',context)
+
+
+@require_http_methods(["POST"])
+def story_reply(request,story_id):
+    if request.POST['word']:
+        Word.objects.create(text=request.POST['word'],story=Story.objects.get(id=story_id),user=request.user)
+        res=HttpResponse('success', content_type="text/plain")
+    else:
+        res=HttpResponse('fail', content_type="text/plain")
+    return res
