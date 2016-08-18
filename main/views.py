@@ -70,6 +70,7 @@ def story_reply(request,story_id):
 
 @login_required
 @require_http_methods(["GET"])
-def me(request):
+def me_created(request):
     context = user_identify(request)
-    return render(request,'me.html',context)
+    context['stories']=request.user.stories_created.order_by('-publish_time')[:30]
+    return render(request, 'me_created.html', context)

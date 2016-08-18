@@ -17,7 +17,7 @@ class Story(models.Model):
     publish_time=models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.first_word
-
+# todo 最后回复
 
 class Word(models.Model):
     text=models.TextField(max_length=500, default='')

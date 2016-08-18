@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% include 'head.html' %}
+<link rel="stylesheet" href="{% static 'css/tabs.css' %}">
+<body>
+{% include 'partials/header.html' %}
+
+<div class="container">
+    <div class="row" style="margin-top: 20px;border-bottom: 1px solid #927057;">
+        {% for story in stories %}
+            <div class="col-xs-12 story">
+                <div class="avatar" style="background: url('{{ story.create_user.person.avatar.url }}') no-repeat center center;background-size: cover;"></div>
+                <div class="content">
+                    <span style="float: right;">{{ story.publish_time |date:"n/j H:i:s"}}</span>
+                    <span style="display: block;">{{ story.create_user.person.name }}&nbsp;<span class="label label-default">{{ story.words.count }} 回复</span></span>
+                    <a href="{% url 'main:story_detail' story_id=story.id %}"><b>{{ story.first_word }}</b></a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="tabs tabs-style-topline">
+    <nav>
+        <ul>
+            <li class="tab-current"><a href="#" class="icon fa fa-paper-plane"><span>我开启的</span></a></li>
+            <li><a href="#" class="icon fa fa-reply-all"><span>我参与的</span></a></li>
+            <li><a href="#" class="icon fa fa-user"><span>个人设置</span></a></li>
+        </ul>
+    </nav>
+</div>
+
+{#todo 底部tab#}
+</body>
+</html>
