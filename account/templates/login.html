@@ -7,8 +7,6 @@
 
     {% load static %}
 
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
-
     <!--buttons-->
     <link rel="stylesheet" href="{% static 'css/buttons.css' %}">
 
@@ -22,29 +20,28 @@
     <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
-	<!-- main -->
-		<div class="figure">
-			<img src="{% static 'images/logo.svg' %}" style="background-color: #ffffff"/>
-			<div class="main" style="box-sizing: content-box">
-				<div class="head">
-					<h1>一人一句话</h1>
-				</div>
-				<div class="input_form" style="width: 90%;">
-                    <span><i class="fa fa-user"></i></span>
-                    <input type="text" placeholder="用户名">
-                </div>
-                <div class="input_form" style="width: 90%;margin: 18px 0">
-                    <span><i class="fa fa-lock"></i></span>
-                    <input type="password" placeholder="密码">
-                </div>
-                <button class="button button-3d button-rounded button-brown" style="width: 80%;">登录</button>
-			</div>
-			<div class="footer">
-				<p>&copy 2016 Sparker. All rights reserved.</p>
-			</div>
-		</div>
-	<!-- //main -->
+<div class="figure">
+    <img src="{% static 'images/logo.svg' %}" style="background-color: #ffffff"/>
+    <div class="main" style="box-sizing: content-box">
+        <div class="head">
+            <h1>一人一句话</h1>
+        </div>
+        <div class="input_form" style="width: 90%;">
+            <span><i class="fa fa-user"></i></span>
+            <input type="text" placeholder="用户名">
+        </div>
+        <div class="input_form" style="width: 90%;margin: 18px 0">
+            <span><i class="fa fa-lock"></i></span>
+            <input type="password" placeholder="密码">
+        </div>
+        <button class="button button-3d button-rounded button-brown" style="width: 80%;">登录</button>
+    </div>
+    <div class="footer">
+        <p>&copy 2016 Sparker. All rights reserved.</p>
+    </div>
+</div>
 </body>
 </html>
