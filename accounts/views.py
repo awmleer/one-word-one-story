@@ -14,6 +14,15 @@ from django.shortcuts import redirect
 # Get an instance of a logger
 logger = logging.getLogger('django')
 
+
+@require_http_methods(["GET","POST"])
 def login(request):
-    context={}
-    return render(request,'login.html',context)
+    logger.info(request.method)
+    # 如果是GET请求
+    if request.method=='GET':
+        context={}
+        res=render(request, 'login.html', context)
+    # 如果是POST请求
+    else:
+        res=HttpResponse('success', content_type="text/plain")
+    return res

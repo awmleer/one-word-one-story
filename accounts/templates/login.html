@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% include 'head.html' %}
+<body>
+<div class="figure">
+    <img src="{% static 'images/logo.svg' %}" style="background-color: #ffffff"/>
+    <div class="main" style="box-sizing: content-box;">
+        <div class="head">
+            <h1>一人一句话</h1>
+        </div>
+        <form id="form_login">
+            <div class="input_form" style="width: 90%;">
+                <span><i class="fa fa-user"></i></span>
+                <input id="username" type="text" placeholder="用户名">
+            </div>
+            <div class="input_form" style="width: 90%;margin: 18px 0">
+                <span><i class="fa fa-lock"></i></span>
+                <input id="password" type="password" placeholder="密码">
+            </div>
+        </form>
+        <button onclick="login()" class="button button-3d button-rounded button-brown" style="width: 90%;">登录</button>
+        <br>
+        <div style="width: 90%;display: inline-block;margin-top: 18px">
+            <a href="#" style="float: right;">没有账号？点我注册</a>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</div>
+
+<script>
+    function login() {
+        $("#username").val();
+        $.post("/accounts/login/", $("#testform").serialize(),function (data) {
+            alert(data);
+        });
+    }
+</script>
+</body>
+</html>
