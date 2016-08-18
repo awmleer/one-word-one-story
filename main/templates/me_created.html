@@ -23,9 +23,9 @@
 <div class="tabs tabs-style-topline">
     <nav>
         <ul>
-            <li class="tab-current"><a href="#" class="icon fa fa-paper-plane"><span>我开启的</span></a></li>
-            <li><a href="#" class="icon fa fa-reply-all"><span>我参与的</span></a></li>
-            <li><a href="#" class="icon fa fa-user"><span>个人设置</span></a></li>
+            <li class="tab-current"><a href="{% url 'main:me_created' %}" class="icon fa fa-paper-plane"><span>我开启的</span></a></li>
+            <li><a href="{% url 'main:me_participated' %}" class="icon fa fa-reply-all"><span>我参与的</span></a></li>
+            <li><a href="{% url 'main:me_setting' %}" class="icon fa fa-user"><span>个人设置</span></a></li>
         </ul>
     </nav>
 </div>

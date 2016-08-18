@@ -72,5 +72,13 @@ def story_reply(request,story_id):
 @require_http_methods(["GET"])
 def me_created(request):
     context = user_identify(request)
-    context['stories']=request.user.stories_created.order_by('-publish_time')[:30]
+    context['stories']=request.user.stories.order_by('-publish_time')[:30]
     return render(request, 'me_created.html', context)
+
+
+@login_required
+@require_http_methods(["GET"])
+def me_participated(request):
+    context = user_identify(request)
+    context['words']=request.user.words.order_by('-publish_time')[:30]
+    return render(request, 'me_participated.html', context)

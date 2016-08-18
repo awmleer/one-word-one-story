@@ -13,7 +13,7 @@ class Person(models.Model):
 
 class Story(models.Model):
     first_word=models.TextField(max_length=500, default='')
-    create_user=models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='stories_created')
+    create_user=models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='stories')
     publish_time=models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.first_word
@@ -23,7 +23,7 @@ class Word(models.Model):
     text=models.TextField(max_length=500, default='')
     story=models.ForeignKey('Story',related_name='words')
     publish_time=models.DateTimeField(auto_now_add=True)
-    user=models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='stories_participated')
+    user=models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='words')
     def __str__(self):
         return self.text
 

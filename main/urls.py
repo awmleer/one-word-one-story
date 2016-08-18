@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^story/(?P<story_id>[0-9]+)/reply/$',views.story_reply,name='story_reply'),
     url(r'^me/$', views.me_created, name='me'), #默认进入的是“我开启的”
     url(r'^me/created$', views.me_created, name='me_created'),
-    url(r'^me/participated$', views.me_created, name='me_created'),
+    url(r'^me/participated$', views.me_participated, name='me_participated'),
+    url(r'^me/setting$', views.me_participated, name='me_setting'),
 ]

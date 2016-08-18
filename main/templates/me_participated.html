@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% include 'head.html' %}
+<link rel="stylesheet" href="{% static 'css/tabs.css' %}">
+<body>
+{% include 'partials/header.html' %}
+
+<div class="container">
+    <div class="row" style="margin-top: 20px;border-bottom: 1px solid #927057;">
+        {% for word in words %}
+            <div class="col-xs-12 story">
+                <div class="avatar" style="background: url('{{ word.story.create_user.person.avatar.url }}') no-repeat center center;background-size: cover;"></div>
+                <div class="content">
+                    <span style="float: right;">{{ word.story.publish_time |date:"n/j H:i:s"}}</span>
+                    <span style="display: block;">{{ word.story.create_user.person.name }}&nbsp;<span class="label label-default">{{ word.story.words.count }} 回复</span></span>
+                    <a href="{% url 'main:story_detail' story_id=word.story.id %}"><b>{{ word.story.first_word }}</b></a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="tabs tabs-style-topline">
+    <nav>
+        <ul>
+            <li><a href="{% url 'main:me_created' %}" class="icon fa fa-paper-plane"><span>我开启的</span></a></li>
+            <li class="tab-current"><a href="{% url 'main:me_participated' %}" class="icon fa fa-reply-all"><span>我参与的</span></a></li>
+            <li><a href="{% url 'main:me_setting' %}" class="icon fa fa-user"><span>个人设置</span></a></li>
+        </ul>
+    </nav>
+</div>
+
+{#todo 底部tab#}
+</body>
+</html>
