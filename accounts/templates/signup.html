@@ -44,8 +44,8 @@
                 <input id="password_again" type="password" placeholder="再次输入密码" required>
             </div>
             <p style="text-align: left;font-size: 12px;padding-left: 5%">标有*的是必填项</p>
-            <button type="submit" class="button button-3d button-rounded button-brown" style="width: 90%;">立即注册</button>
         </form>
+        <button onclick="signup()" class="button button-3d button-rounded button-brown" style="width: 90%;">立即注册</button>
         <br>
         <div style="width: 90%;display: inline-block;margin-top: 18px">
             <a href="{% url 'accounts:login' %}" style="float: right;">已有账号？点我登录</a>
@@ -56,9 +56,13 @@
 
 <script>
     function signup() {
-        $("#username").val();
+        if ($("#password").val()!=$("#password_again").val()) {
+            alert("两次输入的密码不一致");
+            return;
+        }
         $.post("/accounts/signup/", $("#form_signup").serialize(),function (data) {
             if (data == 'success') {
+                alert("注册成功");
                 location.href='/index';
             }else {
                 alert(data);

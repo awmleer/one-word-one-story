@@ -49,20 +49,31 @@ def signup(request):
         res=render(request, 'signup.html', context)
     # 如果是POST请求
     else:
-        user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
-        if user is not None:
-            # the password verified for the user
-            if user.is_active:
-                # User is valid, active and authenticated
-                auth.login(request, user)
-                res = HttpResponse('success', content_type="text/plain")
-            else:
-                # The password is valid, but the account has been disabled!
-                res = HttpResponse('您的账号已被锁定', content_type="text/plain")
+        # 一些简单的表单验证
+        if not request.POST['username']:
+            return HttpResponse('请输入用户名', content_type="text/plain")
+        if not request.POST['name']:
+            return HttpResponse('请输入昵称', content_type="text/plain")
+        if not request.POST['password']:
+            return HttpResponse('请输入密码', content_type="text/plain")
+
+        # 如果数据库中已经存在了这个用户名
+        if len(User.objects.filter(username=request.POST['username'])) > 0:
+            return HttpResponse('您输入的用户名已经被注册过了', content_type="text/plain")
+
+        # 正常情况
+        new_user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
+        if new_user is not None:
+            # 创建info
+            new_person = Person.objects.create(user=new_user,name=request.POST['name'])
+            if request.POST['introduction']:
+                new_person.introduction=request.POST['introduction']
+            new_person.save()
+            user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
+            auth.login(request, user)
+            res = HttpResponse('success', content_type="text/plain")
         else:
-            # the authentication system was unable to verify the username and password
-            # The username and password were incorrect.
-            res = HttpResponse('用户名或密码错误', content_type="text/plain")
+            res = HttpResponse('注册失败', content_type="text/plain")
     return res
 
 

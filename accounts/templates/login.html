@@ -30,7 +30,6 @@
 
 <script>
     function login() {
-        $("#username").val();
         $.post("/accounts/login/", $("#form_login").serialize(),function (data) {
             if (data == 'success') {
                 location.href='/index';
