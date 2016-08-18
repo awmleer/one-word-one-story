@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+{#{% load static %}#}
+{% include 'head.html' %}
+<body>
+{% include 'partials/header.html' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <blockquote>
+                <h2><b>一个人一句话</b></h2>
+                <h6>每一个奇妙的故事，都需要大家的想象。</h6>
+            </blockquote>
+            <p style="border-radius: 4px;width: 100%;padding: 10px;background: #EFE1C4">
+                版本号：v0.1（测试版）<br>
+                联系我们：support@sparker.xyz<br>
+                如果您觉得这个网站很棒，请分享给您的朋友们~<br>
+                如果您对她有任何的意见，欢迎向我们反馈。
+            </p>
+            <a href="{% url 'main:index' %}" class="button button-block button-rounded" style="margin-top: 20px">返回首页</a>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+</body>
+</html>

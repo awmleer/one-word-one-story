@@ -89,3 +89,11 @@ def me_participated(request):
 def me_setting(request):
     context = user_identify(request)
     return render(request, 'me_setting.html', context)
+
+
+
+@login_required
+@require_http_methods(["GET"])
+def about(request):
+    context = user_identify(request)
+    return render(request, 'about.html', context)
