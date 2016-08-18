@@ -48,3 +48,10 @@ def story_add(request):
         }
         res=HttpResponse(json.dumps(data), content_type="application/json")
     return res
+
+
+
+@require_http_methods(["GET"])
+def story_detail(request,story_id):
+    context = user_identify(request)
+    return render(request,'story_detail.html',context)
