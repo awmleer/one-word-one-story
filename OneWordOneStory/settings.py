@@ -123,7 +123,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT='/var/www/story/static'
 if DEBUG:
-    STATIC_ROOT=os.path.join(BASE_DIR,'Static')
+    # STATIC_ROOT=os.path.join(BASE_DIR,'Static')
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static/'),
     )
