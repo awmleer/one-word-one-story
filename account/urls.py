@@ -4,5 +4,5 @@ from . import views
 
 app_name = 'account'
 urlpatterns = [
-    # url(r'^index/',views.index,name='index'),
+    url(r'^login/',views.login,name='login'),
 ]
