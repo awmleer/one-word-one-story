@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required,permission_required
 from main.models import *
 import datetime
 from django.utils import timezone
+import json
 
 import logging
 from django.shortcuts import redirect
@@ -25,12 +26,24 @@ def user_identify(request):
 
 
 
+@require_http_methods(["GET"])
 def index(request):
     context=user_identify(request)
     return render(request,'index.html',context)
 
 
 
+@login_required
+@require_http_methods(["GET","POST"])
 def story_add(request):
-    context = user_identify(request)
-    return render(request,'story_add.html',context)
+    if request.method=='GET': #GET请求
+        context = user_identify(request)
+        res=render(request,'story_add.html',context)
+    else: #POST请求
+        story=Story.objects.create(first_word=request.POST['first_word'],create_user=request.user)
+        data={
+            'status':'success',
+            'story_id':story.id
+        }
+        res=HttpResponse(json.dumps(data), content_type="application/json")
+    return res

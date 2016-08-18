@@ -9,15 +9,30 @@
     <div class="row">
         <div class="col-xs-12">
             <h2><b>开启一个故事</b></h2>
-            <textarea placeholder="输入这个故事的第一句话吧…" style="height: 5em;margin-top: 20px"></textarea>
-            <a class="button button-brown button-block button-rounded button-3d" style="margin-top: 20px">开启故事</a>
+            <textarea id="first_word" placeholder="输入这个故事的第一句话吧…(不要超过200字)" maxlength="200" style="height: 5em;margin-top: 20px"></textarea>
+            <button onclick="publish()" class="button button-brown button-block button-rounded button-3d" style="margin-top: 20px">开启故事</button>
             <a href="{% url 'main:index' %}" class="button button-block button-rounded" style="margin-top: 20px">返回故事列表</a>
         </div>
     </div>
-    <div>
-{#        故事条目展示#}
-    </div>
 </div>
+<script>
+    function publish() {
+        var first_word=$("#first_word").val();
+        if (first_word == '') {
+            alert("请输入内容才能开启故事");return;
+        }
+        $.post('/story/add/',{
+            first_word:first_word
+        },function (data) {
+            if (data.status == 'success') {
+                alert("开启成功");
+                location.href='/story/'+data.story_id;
+            }else {
+                alert("开启失败");
+            }
+        });
+    }
+</script>
 
 {% include 'footer.html' %}
 </body>
