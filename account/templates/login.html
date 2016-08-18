@@ -18,15 +18,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!--jquery-->
     <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
 
-    <!--buttons-->
-    <link href="//cdn.bootcss.com/Buttons/2.0.0/css/buttons.min.css" rel="stylesheet">
-    <script src="//cdn.bootcss.com/Buttons/2.0.0/js/buttons.min.js"></script>
+    <!--font awesome-->
+    <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
 
     <!--bootstrap-->
     <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="{% static 'css/buttons.css' %}">
 </head>
 <body>
 	<!-- main -->
@@ -36,13 +37,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="head">
 					<h1>一人一句话</h1>
 				</div>
-				<div class="input_form">
-                    <input type="text" placeholder="Name">
-                    <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
-                    <input type="submit" value="LOGIN">
-                    <button class="button button-3d button-rounded" style="width: 80%;">登录</button>
-                    <button class="button button-rounded" style="width: 80%;background-color: #927057">登录</button>
-				</div>
+				<div class="input_form" style="width: 90%;">
+                    <span><i class="fa fa-user"></i></span>
+                    <input type="text" placeholder="用户名">
+                </div>
+                <div class="input_form" style="width: 90%;margin: 18px 0">
+                    <span><i class="fa fa-lock"></i></span>
+                    <input type="password" placeholder="密码">
+                </div>
+{#                <div class="input_form" style="width: 90%;">#}
+{#                    <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">#}
+{#                </div>#}
+{#                    <input type="submit" value="LOGIN">#}
+                <button class="button button-3d button-rounded button-brown" style="width: 80%;">登录</button>
 			</div>
 			<div class="footer">
 				<p>&copy 2016 Sparker. All rights reserved.</p>
