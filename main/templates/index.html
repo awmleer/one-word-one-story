@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-6">
-            <a class="button button-rounded button-block"><i class="fa fa-search"></i> 搜索</a>
+            <a onclick="alert('还在开发中，请稍候。。')" class="button button-rounded button-block"><i class="fa fa-search"></i> 搜索</a>
         </div>
         <div class="col-xs-6">
             <a {% if not has_logged_in %}onclick="alert('请先登录才能创建故事')"{% endif %} href="{% url 'main:story_add' %}" class="button button-rounded button-block button-brown"><i class="fa fa-plus"></i> 创建</a>

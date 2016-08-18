@@ -39,3 +39,8 @@ def login(request):
             # The username and password were incorrect.
             res = HttpResponse('用户名或密码错误', content_type="text/plain")
     return res
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/accounts/login')
