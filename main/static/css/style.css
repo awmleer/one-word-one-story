@@ -235,10 +235,13 @@ a:hover{
     width: 72px;height: 72px;vertical-align: top;display: inline-block;
 }
 .word .content{
-    display: inline-block;width: calc(100% - 80px);width:-moz-calc(100% - 80px);width:-webkit-calc(100% - 80px);vertical-align: top;padding-left: 3px;
+    display: inline-block;width: calc(100% - 80px);width:-moz-calc(100% - 80px);width:-webkit-calc(100% - 80px);vertical-align: top;padding-left: 3px;padding-top: 4px;
 }
-.word span{
-    display: block;margin-top: 4px;
+.word .name{
+    display: block;
+}
+.word .time{
+    float: right;
 }
 .word .content a{
     color: #927057;

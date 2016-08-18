@@ -15,11 +15,12 @@
         </div>
     </div>
     <div class="row" style="margin-top: 20px;border-bottom: 1px solid #927057;">
-        {% for word in story.words.all %}
+        {% for word in words.all %}
             <div class="col-xs-12 word">
                 <div class="avatar" style="background: url('{{ word.user.person.avatar.url }}') no-repeat center center;background-size: cover;"></div>
                 <div class="content">
-                    <span style="">{{ word.user.person.name }}</span>
+                    <span class="time">{{ word.publish_time|date:"n/j H:i:s" }}</span>
+                    <span class="name">{{ word.user.person.name }}</span>
                     <b>{{ word.text }}</b>
                 </div>
             </div>

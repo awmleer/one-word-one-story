@@ -56,5 +56,5 @@ def story_detail(request,story_id):
     context = user_identify(request)
     story=Story.objects.get(id=story_id)
     context['story']=story
-    # context['words']=Story.objects.get(id=story_id).words.all()
+    context['words']=story.words.order_by('publish_time')
     return render(request,'story_detail.html',context)
