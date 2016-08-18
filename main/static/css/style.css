@@ -67,12 +67,22 @@ body{
     padding: 10px 10px 10px 60px;
     width: 100%;
     font-size: 1.1em;
-    font-family: 'Oxygen', sans-serif;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -o-border-radius: 5px;
     -ms-border-radius: 5px;
+}
+
+
+textarea{
+outline: none;
+    border: none;
+    background: #efe1c4;
+    padding: 10px 10px 10px 10px;
+    width: 100%;
+    font-size: 1.1em;
+    border-radius: 5px;
 }
 
 .footer{

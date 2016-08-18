@@ -14,13 +14,23 @@ from django.shortcuts import redirect
 # Get an instance of a logger
 logger = logging.getLogger('django')
 
-
-def index(request):
+def user_identify(request):
     context={}
     if isinstance(request.user,AnonymousUser):
         context['has_logged_in']=False
     else:
         context['has_logged_in']=True
         context['user']={'name':request.user.person.name}
-    logger.info(context)
+    return context
+
+
+
+def index(request):
+    context=user_identify(request)
     return render(request,'index.html',context)
+
+
+
+def story_add(request):
+    context = user_identify(request)
+    return render(request,'story_add.html',context)
