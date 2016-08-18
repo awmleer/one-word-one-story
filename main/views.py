@@ -29,6 +29,7 @@ def user_identify(request):
 @require_http_methods(["GET"])
 def index(request):
     context=user_identify(request)
+    context['stories']=Story.objects.order_by('-publish_time')[:30]
     return render(request,'index.html',context)
 
 

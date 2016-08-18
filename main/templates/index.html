@@ -4,7 +4,6 @@
 {% include 'head.html' %}
 <body>
 {% include 'partials/header.html' %}
-
 <div class="container">
     <div class="row">
         <div class="col-xs-6">
@@ -14,10 +13,38 @@
             <a {% if not has_logged_in %}onclick="alert('请先登录才能创建故事')"{% endif %} href="{% url 'main:story_add' %}" class="button button-rounded button-block button-brown"><i class="fa fa-plus"></i> 创建</a>
         </div>
     </div>
-    <div>
-{#        故事条目展示#}
+    <div class="row" style="margin-top: 20px;border-bottom: 1px solid #927057;">
+        {% for story in stories %}
+            <div class="col-xs-12 story">
+                <div class="avatar" style="background: url('{{ story.create_user.person.avatar.url }}') no-repeat center center;background-size: cover;"></div>
+                <div class="content">
+                    <span style="display: block;">{{ story.create_user.person.name }}</span>
+                    <a href="#" class="first-word"><b>{{ story.first_word }}</b></a>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 </div>
+<style>
+    .story{
+        background-color: #EFE1C4;border-top: 1px solid #927057;padding-top: 8px;padding-bottom: 8px;
+    }
+    .story .avatar{
+        width: 72px;height: 72px;vertical-align: middle;display: inline-block;
+    }
+    .story .content{
+        display: inline-block;width: calc(100% - 80px);width:-moz-calc(100% - 80px);width:-webkit-calc(100% - 80px);vertical-align: middle;padding-left: 3px;
+    }
+    .story .content a{
+        color: #927057;
+    }
+    .story .content a:hover{
+        color: #927057;
+    }
+    .story .content b{
+        display: block;text-overflow: ellipsis;width: 80%;overflow: hidden;white-space: nowrap;margin-top: 8px;font-size: 14px;
+    }
+</style>
 
 {% include 'footer.html' %}
 </body>
