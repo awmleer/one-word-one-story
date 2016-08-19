@@ -80,9 +80,14 @@
         $.get('/like',{
             type:'like_word',
             id:id
-        },function () {
-            $("#"+id).addClass("active").removeAttr("onclick");
-            $("#"+id+" span").text(parseInt($("#"+id+" span").text())+1);
+        },function (data) {
+            if (data == 'success') {
+                $("#"+id).addClass("active").removeAttr("onclick");
+                $("#"+id+" span").text(parseInt($("#"+id+" span").text())+1);
+            }else {
+                alert(data);
+            }
+
         })
     }
 </script>

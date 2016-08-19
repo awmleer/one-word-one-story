@@ -185,8 +185,11 @@ def about(request):
 def like(request):
     if request.GET['type']=='like_word':
         word=Word.objects.get(id=request.GET['id'])
+        if word.user==request.user:
+            return HttpResponse('自己不能给自己加星哦', content_type="text/plain")
+        if request.user in word.like_users.all():
+            return HttpResponse('您已经加过星星了', content_type="text/plain")
         word.like_users.add(request.user)
-        # todo 自己不能给自己star
         person_who_word=word.user.person
         person_who_word.points += 5
         person_who_word.stars += 1
