@@ -268,11 +268,11 @@ a:hover{
     float: right;
 }
 .word .content a{
-    color: #927057;
+    color: #927057;display: block;margin-top: 6px;font-size: 14px;
 }
 .word .content a:hover{
     color: #927057;
 }
 .word .content b{
-    color: #927057;display: block;margin-top: 6px;font-size: 14px;
+    color: #927057;
 }

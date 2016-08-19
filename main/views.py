@@ -26,7 +26,7 @@ def user_identify(request):
 @require_http_methods(["GET"])
 def index(request):
     context=user_identify(request)
-    context['stories']=Story.objects.order_by('-publish_time')[:30]
+    context['stories']=Story.objects.order_by('-last_reply_time')[:30]
     return render(request,'index.html',context)
 
 
@@ -61,7 +61,9 @@ def story_detail(request,story_id):
 @require_http_methods(["POST"])
 def story_reply(request,story_id):
     if request.POST['word']:
-        Word.objects.create(text=request.POST['word'],story=Story.objects.get(id=story_id),user=request.user)
+        story=Story.objects.get(id=story_id)
+        story.last_reply_time=timezone.now()
+        Word.objects.create(text=request.POST['word'],story=story,user=request.user)
         res=HttpResponse('success', content_type="text/plain")
     else:
         res=HttpResponse('fail', content_type="text/plain")

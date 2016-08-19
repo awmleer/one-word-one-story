@@ -11,6 +11,16 @@ pytz
 Pillow 3.3.1
 uwsgi
 
+
+## 版本升级中的部署操作步骤
+1. 关掉`setting.py`中的`DEBUG`
+2. 把本地项目上传至服务器
+3. 关闭uwsgi进程 `killall -9 uwsgi`
+4. 数据库 `python manage.py makemigrations`和`python manage.py migrate`
+5. 静态文件收集 `python manage.py collectstatic`
+6. 启动uwsgi `uwsgi --ini uwsgi.ini`
+
+
 ## 其他
 - 初始化项目请先在控制台执行`python manage.py makemigrations`和`python manage.py migrate`
 - 此外还需要在根目录下新建一个文件夹`Media`，里面放上一张图片`avatar_default.png`作为默认的用户头像
