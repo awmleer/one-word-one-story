@@ -276,3 +276,13 @@ a:hover{
 .word .content b{
     color: #927057;
 }
+
+
+.button-like{
+    float: right;padding: 0 10px;margin-top: 3px;margin-left: 3px;
+}
+.button-like.active{
+    background: #fff!important;
+    color: #927057!important;
+    opacity: 1!important;
+}

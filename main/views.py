@@ -169,3 +169,16 @@ def me_avatar(request):
 def about(request):
     context = user_identify(request)
     return render(request, 'about.html', context)
+
+
+
+@login_required
+@require_http_methods(["GET"])
+def like(request):
+    if request.GET['type']=='like_word':
+        word=Word.objects.get(id=request.GET['id'])
+        word.like_users.add(request.user)
+        return HttpResponse('success', content_type="text/plain")
+    else:
+        return HttpResponse('fail', content_type="text/plain")
+

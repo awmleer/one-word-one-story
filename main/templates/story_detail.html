@@ -29,7 +29,18 @@
                 <div class="content">
                     <span class="time">{{ word.publish_time|date:"n/j H:i:s" }}</span>
                     <span class="name">{{ word.user.person.name }}</span>
-                    <b>{{ word.text }}</b>
+                    <b>
+                    {% if has_logged_in %}
+                        {% if user in word.like_users.all %}
+                            <button class="active button-like button button-brown button-plain button-border button-rounded"><i class="fa fa-star"></i> {{ word.like_users.count }}</button>
+                        {% else %}
+                            <button id="{{ word.id }}" onclick="like_word({{ word.id }})" class="button-like button button-brown button-plain button-border button-rounded"><i class="fa fa-star"></i> <span>{{ word.like_users.count }}</span></button>
+                        {% endif %}
+                    {% else %}
+                        <button onclick="alert('请先登录再进行点赞');" class="button-like button button-brown button-plain button-border button-rounded"><i class="fa fa-star"></i> {{ word.like_users.count }}</button>
+                    {% endif %}
+                        {{ word.text }}
+                    </b>
                 </div>
             </div>
         {% empty %}
@@ -39,36 +50,41 @@
         {% endfor %}
         <div class="col-xs-12 word">
             <textarea id="word" style="background: #fff5e1;margin-top: 10px;height: 6em;" placeholder="一句话接下去…（请不要超过200字）" maxlength="200"></textarea>
-            <button onclick="publish()" class="button button-rounded button-3d button-brown button-block" style="margin-top: 15px;margin-bottom: 15px">发表</button>
-            {% if not has_logged_in %}<p style="width:100%;text-align: center">请先登录再进行回复</p>{% endif %}
+            {% if has_logged_in %}
+                <button onclick="publish()" class="button button-rounded button-3d button-brown button-block" style="margin-top: 15px;margin-bottom: 15px">发表</button>
+            {% else %}
+                <button onclick="alert('请先登录再进行回复');" class="button button-rounded button-3d button-brown button-block" style="margin-top: 15px;margin-bottom: 15px">发表</button>
+                <p style="width:100%;text-align: center">请先登录再进行回复</p>
+            {% endif %}
         </div>
     </div>
 </div>
 <script>
-    {% if has_logged_in %}
-        function publish () {
-            var word=$("#word").val();
-            if (word == '') {
-                alert("内容不能是空的啊");return;
+    function publish () {
+        var word=$("#word").val();
+        if (word == '') {
+            alert("内容不能是空的啊");return;
+        }
+        $.post('reply/',{
+            word:word
+        },function (data) {
+            if (data == 'success') {
+                alert("回复成功");
+                location.reload();
+            }else {
+                alert("回复失败");
             }
-            $.post('reply/',{
-                word:word
-            },function (data) {
-                if (data == 'success') {
-                    alert("回复成功");
-                    location.reload();
-                }else {
-                    alert("回复失败");
-                }
-            });
-        }
-    {% else %}
-        function publish () {
-            alert("请先登录再进行回复");
-            location.href='/accounts/login';
-        }
-    {% endif %}
-
+        });
+    }
+    function like_word(id) {
+        $.get('/like',{
+            type:'like_word',
+            id:id
+        },function () {
+            $("#"+id).addClass("active").removeAttr("onclick");
+            $("#"+id+" span").text(parseInt($("#"+id+" span").text())+1);
+        })
+    }
 </script>
 
 

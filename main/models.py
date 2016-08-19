@@ -25,6 +25,7 @@ class Word(models.Model):
     story=models.ForeignKey('Story',related_name='words')
     publish_time=models.DateTimeField(auto_now_add=True)
     user=models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='words')
+    like_users=models.ManyToManyField('auth.User',related_name='like_words')
     def __str__(self):
         return self.text
 
