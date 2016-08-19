@@ -152,7 +152,7 @@
 
 .tabs-style-topline nav a {
     padding: 0.65em 0 0.5em;
-    background: rgba(239, 225, 196,0.4);
+    background: #E0CFA7;
     color: #807865;
     line-height: 1;
     -webkit-transition: color 0.2s;

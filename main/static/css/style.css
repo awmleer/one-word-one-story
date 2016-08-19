@@ -8,6 +8,27 @@ body{
     max-width: 720px;
 }
 
+#header-wrapper{
+    position: fixed;height: 48px;width: 100%;background:#927057;color: #fff;box-shadow: 0 5px 3px #837068;z-index: 100;top:0;
+}
+#header{
+    max-width:800px;margin:0 auto;
+}
+#header #right-button{
+    float: right;margin-top: 6px;margin-right:5px;padding: 0 12px;
+}
+#header #logo{
+    color: #fff1d1;
+}
+#header #logo p{
+    font-size: 28px;margin: 5px 15px;
+}
+#header #logo:focus,#header #logo:hover{
+    text-decoration: none;
+    color: #fff7df;
+}
+
+
 /*-- main --*/
 .main{
     width: 30%;
