@@ -8,12 +8,14 @@
 
 <div class="container" style="padding-bottom: 100px">
     <div class="row" style="margin-top: 20px;">
-        <div class="col-xs-12">
+        <form class="col-xs-12" action="{% url 'main:me_avatar' %}" method="POST" enctype="multipart/form-data">
             <div class="avatar" style="background: url('{{ user.person.avatar.url }}') no-repeat center center;background-size: cover;width: 100px;height: 100px;display: inline-block;vertical-align: bottom"></div>
-            <div style="display: inline-block;padding-left: 8px;vertical-align: bottom;">
-                <button class="button button-brown button-rounded">上传头像</button>
+            <div style="display: inline-block;padding-left: 8px;vertical-align: bottom;width: calc(100% - 130px);">
+                <input name="avatar" style="display: inline-block;width: 100%;margin-bottom: 5px" id="avatar_upload" type="file" accept="image/jpeg,image/png,image/bmp" required><br>
+                <b>小于200K</b>
+                <button type="submit" class="button button-brown button-rounded" style="margin-top: 5px;display: block;">上传头像</button>
             </div>
-        </div>
+        </form>
         <div class="col-xs-12" style="margin-top: 15px">
             <hr>
             <div class="input_form" style="width: 100%;margin: 8px 0 0">

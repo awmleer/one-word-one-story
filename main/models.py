@@ -3,7 +3,7 @@ from django.db import models
 class Person(models.Model):
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE, related_name='person')
     name = models.CharField(max_length=50, default='新用户')
-    avatar=models.FileField(upload_to='avatars',default='avatar_default.png')
+    avatar=models.ImageField(upload_to='avatars',default='avatar_default.png')
     introduction= models.CharField(max_length=100, default='暂无个人介绍')
     phone = models.CharField(max_length=20, blank=True, default='')
     last_modified_time = models.DateTimeField(auto_now=True)

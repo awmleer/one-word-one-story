@@ -8,6 +8,8 @@ nginx
 python 3.5.2  
 django 1.10  
 pytz  
+Pillow 3.3.1
+uwsgi
 
 ## 其他
 - 初始化项目请先在控制台执行`python manage.py makemigrations`和`python manage.py migrate`

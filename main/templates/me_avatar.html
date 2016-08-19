@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+{#{% load static %}#}
+{% include 'head.html' %}
+<body>
+{% include 'partials/header.html' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="avatar" style="background: url('{{ user.person.avatar.url }}') no-repeat center center;background-size: cover;width: 100px;height: 100px;display: block;margin: 10px auto;"></div>
+            {% ifequal status 'success' %}
+                <p style="width: 100%;text-align: center"><span style="font-size: 20px"><i class="fa fa-check-circle" style="color: #6b9619"></i> 上传成功</span><br>三秒后自动跳转回设置页面</p>
+            {% endifequal %}
+            {% ifequal status 'too_big' %}
+                <p style="width: 100%;text-align: center"><span style="font-size: 20px"><i class="fa fa-times-circle" style="color: #d10010"></i> 请上传小于200K的文件</span><br>三秒后自动跳转回设置页面</p>
+            {% endifequal %}
+            {% ifequal status 'fail' %}
+                <p style="width: 100%;text-align: center"><span style="font-size: 20px"><i class="fa fa-times-circle" style="color: #d10010"></i> 上传失败</span><br>三秒后自动跳转回设置页面</p>
+            {% endifequal %}
+
+            <a href="{% url 'main:index' %}" class="button button-block button-rounded" style="margin-top: 20px">返回设置</a>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+</body>
+</html>

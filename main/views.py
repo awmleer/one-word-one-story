@@ -92,11 +92,31 @@ def me_setting(request):
 
 
 @login_required
-@require_http_methods(["GET"])
+@require_http_methods(["GET","POST"])
 def me_modify(request):
     context = user_identify(request)
     return render(request, 'me_modify.html', context)
 
+
+@login_required
+@require_http_methods(["POST"])
+def me_avatar(request):
+    context = user_identify(request)
+    if request.FILES['avatar']:
+        context['status'] = 'fail' #默认状态是fail
+        logger.info(request.FILES['avatar'])
+        if request.FILES['avatar'].size>204000:
+            context['status'] = 'too_big'
+        else:
+            avatar = request.user.person.avatar
+            logger.info(request.FILES['avatar'].size)
+            # 如果原来的不是默认头像，就把旧头像先删掉
+            if avatar.url != '/media/avatar_default.png':
+                avatar.delete()  # 删除旧的头像
+            avatar.save(request.FILES['avatar'].name, request.FILES['avatar'])
+            context['status'] = 'success'
+
+    return render(request, 'me_avatar.html', context)
 
 
 

@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^me/participated/$', views.me_participated, name='me_participated'),
     url(r'^me/setting/$', views.me_setting, name='me_setting'),
     url(r'^me/modify/$', views.me_modify, name='me_modify'),
+    url(r'^me/avatar/$', views.me_avatar, name='me_avatar'),
 ]
