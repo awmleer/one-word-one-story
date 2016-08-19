@@ -17,6 +17,10 @@
                     <a href="{% url 'main:story_detail' story_id=story.id %}"><b>{{ story.first_word }}</b></a>
                 </div>
             </div>
+        {% empty %}
+            <div class="col-xs-12 story" style="height: 80px;padding-top: 30px;text-align: center">
+                <span>您还没有开启过故事呢</span>
+            </div>
         {% endfor %}
     </div>
 </div>

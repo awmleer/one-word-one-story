@@ -12,10 +12,12 @@
             <div class="avatar" style="background: url('{{ user.person.avatar.url }}') no-repeat center center;background-size: cover;width: 100px;height: 100px;display: inline-block;vertical-align: top"></div>
             <div style="display: inline-block;width: calc(100% - 120px);width:-moz-calc(100% - 120px);width:-webkit-calc(100% - 120px);padding-left: 3px;vertical-align: top;padding-top: 6px">
                 <b style="display: block;font-size: 18px;">{{ user.person.name }}&nbsp;&nbsp;<a href="#" class="button button-large button-plain button-borderless"><i class="fa fa-pencil-square-o"></i></a></b>
+{#                todo 编辑个人资料#}
                 <span style="font-size: 18px;margin-top: 10px;display: block;">{{ user.person.introduction }}</span>
             </div>
         </div>
         <div class="col-xs-12" style="margin-top: 15px">
+{#            todo 修改密码#}
             <a href="#" class="button button-brown button-block button-rounded" style="margin-bottom: 10px"><i class="fa fa-key fa-fw"></i> 修改密码</a>
             <a href="{% url 'accounts:logout' %}" class="button button-brown button-block button-rounded" style="margin-bottom: 10px"><i class="fa fa-sign-out fa-fw"></i> 退出登录</a>
             <a href="{% url 'main:about' %}" class="button button-block button-rounded"><i class="fa fa-info-circle"></i> 关于</a>

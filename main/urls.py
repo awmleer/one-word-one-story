@@ -4,6 +4,7 @@ from . import views
 
 app_name = 'main'
 urlpatterns = [
+    url(r'^$',views.index,name='index'),
     url(r'^index/$',views.index,name='index'),
     url(r'^story/add/$',views.story_add,name='story_add'),
     url(r'^story/(?P<story_id>[0-9]+)/$',views.story_detail,name='story_detail'),
