@@ -39,6 +39,8 @@ def story_add(request):
         res=render(request,'story_add.html',context)
     else: #POST请求
         story=Story.objects.create(first_word=request.POST['first_word'],create_user=request.user)
+        person=request.user.person
+        person.last_create_story=timezone.now()
         data={
             'status':'success',
             'story_id':story.id
@@ -64,6 +66,8 @@ def story_reply(request,story_id):
         story=Story.objects.get(id=story_id)
         story.last_reply_time=timezone.now()
         Word.objects.create(text=request.POST['word'],story=story,user=request.user)
+        person=request.user.person
+        person.last_reply_story=timezone.now()
         res=HttpResponse('success', content_type="text/plain")
     else:
         res=HttpResponse('fail', content_type="text/plain")

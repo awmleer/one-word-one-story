@@ -6,7 +6,11 @@ class Person(models.Model):
     avatar=models.ImageField(upload_to='avatars',default='avatar_default.png')
     introduction= models.CharField(max_length=100, default='暂无个人介绍')
     phone = models.CharField(max_length=20, blank=True, default='')
-    last_modified_time = models.DateTimeField(auto_now=True)
+    stars=models.PositiveIntegerField(default=0)
+    points=models.PositiveIntegerField(default=0)
+    last_reply_story = models.DateTimeField(auto_now_add=True)
+    last_create_story = models.DateTimeField(auto_now_add=True)
+    # last_modified_time = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.name
 
