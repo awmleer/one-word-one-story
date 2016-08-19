@@ -15,8 +15,17 @@
                 <span style="font-size: 18px;margin-top: 10px;display: block;">{{ user.person.introduction }}</span>
             </div>
         </div>
+    </div>
+    <div class="row" style="margin-top: 20px;margin-bottom: 15px">
+        <div class="col-xs-6" style="text-align: center;border-right: solid 3px #927057">
+            收到星星&nbsp;&nbsp;&nbsp;<b style="font-size: 40px">{{ user.person.stars }}</b>
+        </div>
+        <div class="col-xs-6" style="text-align: center">
+            我的积分&nbsp;&nbsp;&nbsp;<b style="font-size: 40px">{{ user.person.points }}</b>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-xs-12" style="margin-top: 15px">
-{#            todo 修改密码#}
             <a href="{% url 'main:me_changepwd' %}" class="button button-brown button-block button-rounded" style="margin-bottom: 10px"><i class="fa fa-key fa-fw"></i> 修改密码</a>
             <a href="{% url 'accounts:logout' %}" class="button button-brown button-block button-rounded" style="margin-bottom: 10px"><i class="fa fa-sign-out fa-fw"></i> 退出登录</a>
             <a href="{% url 'main:about' %}" class="button button-block button-rounded"><i class="fa fa-info-circle"></i> 关于</a>

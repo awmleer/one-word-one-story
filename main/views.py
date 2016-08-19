@@ -41,6 +41,8 @@ def story_add(request):
         story=Story.objects.create(first_word=request.POST['first_word'],create_user=request.user)
         person=request.user.person
         person.last_create_story=timezone.now()
+        person.points+=3
+        person.save()
         data={
             'status':'success',
             'story_id':story.id
@@ -68,6 +70,8 @@ def story_reply(request,story_id):
         Word.objects.create(text=request.POST['word'],story=story,user=request.user)
         person=request.user.person
         person.last_reply_story=timezone.now()
+        person.points += 2
+        person.save()
         res=HttpResponse('success', content_type="text/plain")
     else:
         res=HttpResponse('fail', content_type="text/plain")
@@ -182,6 +186,11 @@ def like(request):
     if request.GET['type']=='like_word':
         word=Word.objects.get(id=request.GET['id'])
         word.like_users.add(request.user)
+        # todo 自己不能给自己star
+        person_who_word=word.user.person
+        person_who_word.points += 5
+        person_who_word.stars += 1
+        person_who_word.save()
         return HttpResponse('success', content_type="text/plain")
     else:
         return HttpResponse('fail', content_type="text/plain")
