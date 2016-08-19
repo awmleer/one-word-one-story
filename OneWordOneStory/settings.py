@@ -25,7 +25,7 @@ SECRET_KEY = 'ww^yscelwio1)*^&s27l8)b3x5$d3#3$@b#sh2quyw1$$i*gux'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['story.sparker.top']
 
 
 # Application definition
