@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% include 'head.html' %}
+<link rel="stylesheet" href="{% static 'css/tabs.css' %}">
+<body>
+{% include 'partials/header.html' %}
+
+<div class="container" style="padding-bottom: 100px">
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-xs-12">
+            <h2 style="color: #927057;margin-bottom: 15px"><i class="fa fa-key"></i> <b>修改密码</b></h2>
+            <form id="form_changepwd">
+                <div class="input_form" style="width: 100%;margin: 8px 0 0">
+                    <span><i style="font-style: normal;font-weight: bold">旧的</i></span>
+                    <input id="password_old" name="password_old" type="password" placeholder="请输入旧密码" required>
+                </div>
+                <div class="input_form" style="width: 100%;margin: 18px 0 0">
+                    <span><i style="font-style: normal;font-weight: bold">新的</i></span>
+                    <input id="password_new" name="password_new" type="password" placeholder="请输入新密码" required>
+                </div>
+                <div class="input_form" style="width: 100%;margin: 18px 0 20px">
+                    <span><i style="font-style: normal;font-weight: bold">确认</i></span>
+                    <input id="password_again" name="password_again" type="password" placeholder="再次输入新密码" required>
+                </div>
+            </form>
+            <button onclick="changepwd()" class="button button-brown button-block button-rounded" style="margin-bottom: 12px"><i class="fa fa-check fa-fw"></i> 提交修改</button>
+            <a href="{% url 'main:me_setting' %}" class="button button-block button-rounded"><i class="fa fa-reply fa-fw"></i> 返回</a>
+        </div>
+    </div>
+</div>
+<div class="tabs tabs-style-topline">
+    <nav>
+        <ul>
+            <li><a href="{% url 'main:me_created' %}" class="icon fa fa-paper-plane"><span>我开启的</span></a></li>
+            <li><a href="{% url 'main:me_participated' %}" class="icon fa fa-reply-all"><span>我参与的</span></a></li>
+            <li class="tab-current"><a href="{% url 'main:me_setting' %}" class="icon fa fa-user"><span>个人设置</span></a></li>
+        </ul>
+    </nav>
+</div>
+<script>
+    function changepwd() {
+        if ($("#password_new").val()!=$("#password_again").val()) {
+            alert("两次输入的密码不一致");return;
+        }
+        $.post('/me/changepwd/',$("#form_changepwd").serialize(), function (data) {
+            if (data == 'success') {
+                alert("修改成功");
+                location.href='/accounts/login';
+            }else{
+                alert(data);
+            }
+        });
+    }
+</script>
+<div style="display: none">
+    {% include 'footer.html' %}
+</div>
+</body>
+</html>

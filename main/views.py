@@ -109,6 +109,37 @@ def me_modify(request):
         return HttpResponse('success', content_type="text/plain")
 
 
+
+@login_required
+@require_http_methods(["GET","POST"])
+def me_changepwd(request):
+    if request.method=='GET':
+        context = user_identify(request)
+        return render(request, 'me_changepwd.html', context)
+    else:
+        if not request.POST['password_old']:
+            return HttpResponse('请输入旧密码', content_type="text/plain")
+        if not request.POST['password_new']:
+            return HttpResponse('请输入新密码', content_type="text/plain")
+        user= auth.authenticate(username=request.user.username, password=request.POST['password_old'])
+        if user is not None:
+            # the password verified for the user
+            if user.is_active:
+                # User is valid, active and authenticated
+                user.set_password(request.POST['password_new'])
+                user.save()
+                auth.logout(request)
+                return HttpResponse('success', content_type="text/plain")
+            else:
+                # The password is valid, but the account has been disabled!
+                return HttpResponse('您的账号已被锁定', content_type="text/plain")
+        else:
+            # the authentication system was unable to verify the username and password
+            # The username and password were incorrect.
+            return HttpResponse('您输入的密码错误', content_type="text/plain")
+
+
+
 @login_required
 @require_http_methods(["POST"])
 def me_avatar(request):

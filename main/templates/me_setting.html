@@ -17,7 +17,7 @@
         </div>
         <div class="col-xs-12" style="margin-top: 15px">
 {#            todo 修改密码#}
-            <a href="#" class="button button-brown button-block button-rounded" style="margin-bottom: 10px"><i class="fa fa-key fa-fw"></i> 修改密码</a>
+            <a href="{% url 'main:me_changepwd' %}" class="button button-brown button-block button-rounded" style="margin-bottom: 10px"><i class="fa fa-key fa-fw"></i> 修改密码</a>
             <a href="{% url 'accounts:logout' %}" class="button button-brown button-block button-rounded" style="margin-bottom: 10px"><i class="fa fa-sign-out fa-fw"></i> 退出登录</a>
             <a href="{% url 'main:about' %}" class="button button-block button-rounded"><i class="fa fa-info-circle"></i> 关于</a>
         </div>
