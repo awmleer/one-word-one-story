@@ -13,7 +13,7 @@
                 <div class="avatar" style="background: url('{{ story.create_user.person.avatar.url }}') no-repeat center center;background-size: cover;"></div>
                 <div class="content">
                     <span style="float: right;">{{ story.publish_time |date:"n/j H:i:s"}}</span>
-                    <span style="display: block;">{{ story.create_user.person.name }}&nbsp;<span class="label label-default">{{ story.words.count }} 回复</span></span>
+                    <span style="display: block;">{{ story.create_user.person.name }}&nbsp;<span class="label label-default">{{ story.words.count }} 长度</span></span>
                     <a href="{% url 'main:story_detail' story_id=story.id %}"><b>{{ story.first_word }}</b></a>
                 </div>
             </div>
