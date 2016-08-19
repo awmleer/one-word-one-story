@@ -17,6 +17,9 @@ body{
 #header #right-button{
     float: right;margin-top: 6px;margin-right:5px;padding: 0 12px;
 }
+#header #right-button:hover,#header #right-button:focus{
+    color: #927057;
+}
 #header #logo{
     color: #fff1d1;
 }

@@ -162,6 +162,7 @@
 .tabs-style-topline nav a:hover,
 .tabs-style-topline nav a:focus {
     color: #927057;
+    text-decoration: none;
 }
 
 .tabs-style-topline nav li.tab-current a {

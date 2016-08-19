@@ -94,8 +94,19 @@ def me_setting(request):
 @login_required
 @require_http_methods(["GET","POST"])
 def me_modify(request):
-    context = user_identify(request)
-    return render(request, 'me_modify.html', context)
+    if request.method=='GET':
+        context = user_identify(request)
+        return render(request, 'me_modify.html', context)
+    else:
+        if not request.POST['name']:
+            return HttpResponse('请输入昵称', content_type="text/plain")
+        person=request.user.person
+        person.name=request.POST['name']
+        request.user.email=request.POST['email']
+        person.introduction=request.POST['introduction']
+        person.save()
+        request.user.save()
+        return HttpResponse('success', content_type="text/plain")
 
 
 @login_required
@@ -113,14 +124,14 @@ def me_avatar(request):
             # 如果原来的不是默认头像，就把旧头像先删掉
             if avatar.url != '/media/avatar_default.png':
                 avatar.delete()  # 删除旧的头像
-            avatar.save(request.FILES['avatar'].name, request.FILES['avatar'])
+            avatar.save(request.user.username+'_'+request.FILES['avatar'].name, request.FILES['avatar'])
             context['status'] = 'success'
 
     return render(request, 'me_avatar.html', context)
 
 
 
-@login_required
+
 @require_http_methods(["GET"])
 def about(request):
     context = user_identify(request)

@@ -18,19 +18,21 @@
         </form>
         <div class="col-xs-12" style="margin-top: 15px">
             <hr>
-            <div class="input_form" style="width: 100%;margin: 8px 0 0">
-                <span><i class="fa fa-heart"></i></span>
-                <input value="{{ user.person.name }}" name="name" type="text" placeholder="昵称" required>
-            </div>
-            <div class="input_form" style="width: 100%;margin: 18px 0 0">
-                <span><i class="fa fa-envelope"></i></span>
-                <input value="{{ user.email }}" name="email" type="email" placeholder="邮箱">
-            </div>
-            <div class="input_form" style="width: 100%;margin: 18px 0 20px">
-                <span><i class="fa fa-commenting"></i></span>
-                <input value="{{ user.person.introduction }}" name="introduction" type="text" placeholder="一句话个人介绍（20字以内）" maxlength="20">
-            </div>
-            <a href="#" class="button button-brown button-block button-rounded" style="margin-bottom: 12px"><i class="fa fa-check fa-fw"></i> 提交修改</a>
+            <form id="form_modify">
+                <div class="input_form" style="width: 100%;margin: 8px 0 0">
+                    <span><i class="fa fa-heart"></i></span>
+                    <input value="{{ user.person.name }}" name="name" type="text" placeholder="昵称" required>
+                </div>
+                <div class="input_form" style="width: 100%;margin: 18px 0 0">
+                    <span><i class="fa fa-envelope"></i></span>
+                    <input value="{{ user.email }}" name="email" type="email" placeholder="邮箱">
+                </div>
+                <div class="input_form" style="width: 100%;margin: 18px 0 20px">
+                    <span><i class="fa fa-commenting"></i></span>
+                    <input value="{{ user.person.introduction }}" name="introduction" type="text" placeholder="一句话个人介绍（20字以内）" maxlength="20">
+                </div>
+            </form>
+            <button onclick="modify()" class="button button-brown button-block button-rounded" style="margin-bottom: 12px"><i class="fa fa-check fa-fw"></i> 提交修改</button>
             <a href="{% url 'main:me_setting' %}" class="button button-block button-rounded"><i class="fa fa-reply fa-fw"></i> 返回</a>
         </div>
     </div>
@@ -44,6 +46,18 @@
         </ul>
     </nav>
 </div>
+<script>
+    function modify() {
+        $.post('/me/modify/',$("#form_modify").serialize(), function (data) {
+            if (data == 'success') {
+                alert("修改成功");
+                location.href='/me/setting';
+            }else{
+                alert(data);
+            }
+        });
+    }
+</script>
 <div style="display: none">
     {% include 'footer.html' %}
 </div>
