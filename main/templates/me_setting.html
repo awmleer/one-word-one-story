@@ -11,8 +11,7 @@
         <div class="col-xs-12">
             <div class="avatar" style="background: url('{{ user.person.avatar.url }}') no-repeat center center;background-size: cover;width: 100px;height: 100px;display: inline-block;vertical-align: top"></div>
             <div style="display: inline-block;width: calc(100% - 120px);width:-moz-calc(100% - 120px);width:-webkit-calc(100% - 120px);padding-left: 3px;vertical-align: top;padding-top: 6px">
-                <b style="display: block;font-size: 18px;">{{ user.person.name }}&nbsp;&nbsp;<a href="#" class="button button-large button-plain button-borderless"><i class="fa fa-pencil-square-o"></i></a></b>
-{#                todo 编辑个人资料#}
+                <b style="display: block;font-size: 18px;">{{ user.person.name }}&nbsp;&nbsp;<a href="{% url 'main:me_modify' %}" class="button button-large button-plain button-borderless"><i class="fa fa-pencil-square-o"></i></a></b>
                 <span style="font-size: 18px;margin-top: 10px;display: block;">{{ user.person.introduction }}</span>
             </div>
         </div>

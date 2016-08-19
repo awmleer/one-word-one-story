@@ -81,7 +81,7 @@ body{
     font-size: 24px;
 }
 
-.input_form input[type="text"],.input_form input[type="password"]{
+.input_form input[type="text"],.input_form input[type="password"],.input_form input[type="email"]{
     outline: none;
     border: none;
     background: #efe1c4;

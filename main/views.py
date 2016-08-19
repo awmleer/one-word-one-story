@@ -91,6 +91,14 @@ def me_setting(request):
     return render(request, 'me_setting.html', context)
 
 
+@login_required
+@require_http_methods(["GET"])
+def me_modify(request):
+    context = user_identify(request)
+    return render(request, 'me_modify.html', context)
+
+
+
 
 @login_required
 @require_http_methods(["GET"])
