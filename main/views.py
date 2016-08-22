@@ -67,6 +67,7 @@ def story_reply(request,story_id):
     if request.POST['word']:
         story=Story.objects.get(id=story_id)
         story.last_reply_time=timezone.now()
+        story.save()
         Word.objects.create(text=request.POST['word'],story=story,user=request.user)
         person=request.user.person
         person.last_reply_story=timezone.now()

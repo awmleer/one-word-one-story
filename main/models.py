@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+
 
 class Person(models.Model):
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE, related_name='person')
@@ -19,7 +21,7 @@ class Story(models.Model):
     first_word=models.TextField(max_length=500, default='')
     create_user=models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='stories')
     publish_time=models.DateTimeField(auto_now_add=True)
-    last_reply_time=models.DateTimeField(auto_now_add=True)
+    last_reply_time=models.DateTimeField(default=timezone.now())
     def __str__(self):
         return self.first_word
 
